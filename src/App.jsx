@@ -1,28 +1,30 @@
 import './App.css';
 
-// in react posso creare un componente e richiamarlo in un react fragment dove voglio
-// creo un componente card e lo utilizzo in App
-// utilizzando una arrow function creo un Arrow Function Component
-const Card = () => {
+// per passare dati da un componente padre ad uno figlio utilizziamo le props
+// le props le definisco passandole in un oggetto argomento della funzione che definisce il componente
+// aggiunta regola nell'eslint.config.js per non avere l'errore del type props
+// una prop può essere qualsiasi cosa, un oggetto, un array, un numero, un booleano
+const Card = ({ title }) => {
   return (
     <div>
-      <h2>Card Component</h2>
+      {/* utilizzo le graffe per passare codice js nell'html */}
+      <h2>{title}</h2>
     </div>
   );
 };
 
 const App = () => {
   return (
-    // posso ritornare codice html o nel react fragment <></> on in un tag html ad esempio un <div></div>
     <div>
       <h2>Functional arrow component</h2>
 
-      <Card />
-      <Card />
-      <Card />
+      {/* una props riceve dati dall'esterno indicando il nome della props come attributo nel tag componente */}
+      {/* esempio props per il title */}
+      <Card title="Star Wars" />
+      <Card title="Avatar" />
+      <Card title="The Lion King" />
     </div>
   );
 };
 
-// esporto il componente che ho creato in modo da poterlo riutilizzare ovunque voglio importandolo
 export default App;
