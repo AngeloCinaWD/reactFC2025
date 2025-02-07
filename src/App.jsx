@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+// in react posso creare un componente e richiamarlo in un react fragment dove voglio
+// creo un componente card e lo utilizzo in App
+// utilizzando una arrow function creo un Arrow Function Component
+const Card = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <h2>Card Component</h2>
+    </div>
+  );
+};
 
-export default App
+const App = () => {
+  return (
+    // posso ritornare codice html o nel react fragment <></> on in un tag html ad esempio un <div></div>
+    <div>
+      <h2>Functional arrow component</h2>
+
+      <Card />
+      <Card />
+      <Card />
+    </div>
+  );
+};
+
+// esporto il componente che ho creato in modo da poterlo riutilizzare ovunque voglio importandolo
+export default App;
