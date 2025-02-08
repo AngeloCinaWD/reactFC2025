@@ -2,6 +2,14 @@
 
 [thksTo](https://www.youtube.com/watch?v=dCLhUialKPQ&ab_channel=JavaScriptMastery)
 
+[github code](https://github.com/adrianhajdin/react-movies/tree/main)
+
+[figma](https://resource.jsmastery.pro/react-movie-app)
+
+[appwrite](https://appwrite.io/)
+
+---
+
 [props](https://react.dev/learn/passing-props-to-a-component)
 
 [stili e css](https://it.legacy.reactjs.org/docs/faq-styling.html)
@@ -17,3 +25,9 @@
 [useEffect](https://react.dev/reference/react/useEffect)
 
 [useEffect runs twice](https://react.dev/reference/react/useEffect#my-effect-runs-twice-when-the-component-mounts)
+
+[es7-react-js-snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+
+[flowbite](https://flowbite.com/)
+
+[tailwind spinner](https://flowbite.com/docs/components/spinner/)
