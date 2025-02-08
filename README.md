@@ -31,3 +31,7 @@
 [flowbite](https://flowbite.com/)
 
 [tailwind spinner](https://flowbite.com/docs/components/spinner/)
+
+[tailwind css](https://tailwindcss.com/)
+
+[setting json tailwind react](https://stackoverflow.com/questions/63190041/tailwind-css-intellisense-does-not-provide-suggestions-in-a-reactjs-project)
