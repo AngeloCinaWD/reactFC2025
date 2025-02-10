@@ -35,3 +35,7 @@
 [tailwind css](https://tailwindcss.com/)
 
 [setting json tailwind react](https://stackoverflow.com/questions/63190041/tailwind-css-intellisense-does-not-provide-suggestions-in-a-reactjs-project)
+
+[react input component](https://react.dev/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form)
+
+[input element event](https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event)
