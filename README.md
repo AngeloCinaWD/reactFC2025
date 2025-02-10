@@ -39,3 +39,13 @@
 [react input component](https://react.dev/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form)
 
 [input element event](https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event)
+
+[public API](https://github.com/public-apis/public-apis?tab=readme-ov-file#entertainment)
+
+[TMDB - TheMoviesDataBase](https://developer.themoviedb.org/docs/getting-started)
+
+[TMDB - Discover Movie API](https://developer.themoviedb.org/reference/discover-movie)
+
+[react inline conditional rendering](https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator)
+
+[loop inside react jsx](https://stackoverflow.com/a/22877110)
