@@ -85,10 +85,6 @@ const App = () => {
           ) : (
             <ul>
               {movieList.map(movie => (
-                // <p key={movie.id} className="text-white">
-                //   {movie.title}
-                // </p>
-                // importiamo e cicliamo il componente MovieCard, con key prop e movie prop
                 <MovieCard key={movie.id} movie={movie} />
               ))}
             </ul>
