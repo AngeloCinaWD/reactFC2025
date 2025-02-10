@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Search from './components/search';
 import Spinner from './components/Spinner';
+import MovieCard from './components/MovieCard';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -84,9 +85,11 @@ const App = () => {
           ) : (
             <ul>
               {movieList.map(movie => (
-                <p key={movie.id} className="text-white">
-                  {movie.title}
-                </p>
+                // <p key={movie.id} className="text-white">
+                //   {movie.title}
+                // </p>
+                // importiamo e cicliamo il componente MovieCard, con key prop e movie prop
+                <MovieCard key={movie.id} movie={movie} />
               ))}
             </ul>
           )}

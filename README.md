@@ -49,3 +49,5 @@
 [react inline conditional rendering](https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator)
 
 [loop inside react jsx](https://stackoverflow.com/a/22877110)
+
+[dot symbol](https://symbolsdb.com/dot-symbol)
