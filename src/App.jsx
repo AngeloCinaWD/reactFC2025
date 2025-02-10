@@ -2,9 +2,6 @@ import { useState } from 'react';
 import Search from './components/search';
 
 const App = () => {
-  // creo un nuovo state per il termine per la ricerca dei film
-  // lo state non deve essere mai mutato direttamente sulla prop ad esempio searchTerm = new value, ma bisogna sempre utilizzare la set function setSearchTerm('new value')
-  // in questo modo react sa sempre quale è il valore dello state per quella proprietà
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
@@ -20,7 +17,6 @@ const App = () => {
           </h1>
         </header>
 
-        {/* passo il valore pe rla ricerca tramite props al componente */}
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
     </main>
