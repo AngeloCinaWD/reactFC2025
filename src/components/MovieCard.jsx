@@ -1,4 +1,6 @@
 // destrutturo anche l'oggetto movie per ottenere le proprietà che utilizzo nella card
+// destrutturazione annidata: movie è un oggetto che ha più proprietà al suo interno, creiamo delle variabili con lo stesso nome delle proprietà nell'oggetto movie che ci interessano. La variabile movie non viene generata, ma solo variabili relative alle proprietà in esso contenute
+// questo vuol dire che se avessi destrutturato l'oggetto props come {movie} per ottenre il title avrei dovuto fare movie.title, invece in questo modo mi basta richiamare title
 const MovieCard = ({
   movie: { title, poster_path, release_date, vote_average, original_language },
 }) => {

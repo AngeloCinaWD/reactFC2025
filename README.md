@@ -51,3 +51,15 @@
 [loop inside react jsx](https://stackoverflow.com/a/22877110)
 
 [dot symbol](https://symbolsdb.com/dot-symbol)
+
+[destructuring assignment](https://javascript.info/destructuring-assignment)
+
+[nested destructuring](https://javascript.info/destructuring-assignment#nested-destructuring)
+
+[toFixed() js](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
+
+[split() js](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+
+[TMDB - Search Movie](https://developer.themoviedb.org/reference/search-movie)
+
+[JS - encodeURIComponent](https://developer.mozilla.org/en-US/docs/Glossary/URI)
