@@ -63,3 +63,5 @@
 [TMDB - Search Movie](https://developer.themoviedb.org/reference/search-movie)
 
 [JS - encodeURIComponent](https://developer.mozilla.org/en-US/docs/Glossary/URI)
+
+[NPM react-use](https://www.npmjs.com/package/react-use)

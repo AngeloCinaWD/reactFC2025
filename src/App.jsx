@@ -2,9 +2,14 @@ import { useEffect, useState } from 'react';
 import Search from './components/search';
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
+// import dello useDebounce from react-use
+import { useDebounce } from 'react-use';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
+
+  // debounce searchTerm
+  const [debouncedTermSearch, setDebouncedTermSearch] = useState('');
 
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -54,9 +59,19 @@ const App = () => {
     }
   };
 
+  // per evitare che vengano effettuate chiamate verso il server ad ogni keypress implementiamo il debouncing
+  // installiamo il package use-react (npm i use-react) ed utilizziamo l'hook useDebounce
+  // chiamiamo l'hook useDebounce, indichiamo quale deve essere la dependency ed il tempo di debounce
+  // debounce the search term to prevent making too many API requests
+  // by waiting for the user to stop typing for 500ms
+  useDebounce(() => setDebouncedTermSearch(searchTerm), 500, [searchTerm]);
+
   useEffect(() => {
-    fetch_movies(searchTerm);
-  }, [searchTerm]);
+    // passiamo al metodo fetch_movies il termine di ricerca con il debounce
+    // fetch_movies(searchTerm);
+    fetch_movies(debouncedTermSearch);
+    // }, [searchTerm]);
+  }, [debouncedTermSearch]);
 
   return (
     <main>
