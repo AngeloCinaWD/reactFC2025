@@ -6,7 +6,7 @@ const MovieCard = ({
       <img
         src={
           poster_path
-            ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+            ? `${import.meta.env.VITE_MOVIE_POSTER_URL}${poster_path}`
             : 'no-movie.png'
         }
         alt={title}

@@ -8,6 +8,8 @@
 
 [appwrite](https://appwrite.io/)
 
+[vite .env variables](https://vite.dev/guide/env-and-mode#env-variables-and-modes)
+
 ---
 
 [props](https://react.dev/learn/passing-props-to-a-component)
@@ -65,3 +67,5 @@
 [JS - encodeURIComponent](https://developer.mozilla.org/en-US/docs/Glossary/URI)
 
 [NPM react-use](https://www.npmjs.com/package/react-use)
+
+[appwrite databases doc](https://appwrite.io/docs/references/cloud/client-web/databases)

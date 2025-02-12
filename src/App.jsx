@@ -3,6 +3,7 @@ import Search from './components/search';
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
 import { useDebounce } from 'react-use';
+import { updateSearchCount } from './appwrite';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,7 +16,7 @@ const App = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const API_BASE_URL = 'https://api.themoviedb.org/3';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -49,6 +50,13 @@ const App = () => {
       }
 
       setMovielist(data.results || []);
+
+      // chiamo la funzione esportata updateSearchCount, devo passare i 2 parametri altrimenti non la chiama
+      // passo il termine di ricerca e il primo film nella lista dei film trovati secondo ricerca
+      // se esiste una query e se esiste un film per quella query
+      if (query && data.results.length > 0) {
+        await updateSearchCount(query, data.results[0]);
+      }
     } catch (error) {
       console.error('Error fetching movies: ' + error);
       setErrorMessage('Error fetching movies. Please try again later.');
@@ -57,9 +65,16 @@ const App = () => {
     }
   };
 
-  useDebounce(() => setDebouncedTermSearch(searchTerm), 500, [searchTerm]);
+  useDebounce(() => setDebouncedTermSearch(searchTerm), 1000, [searchTerm]);
 
   useEffect(() => {
+    // Built-in constants ENV VARIABLES
+    // console.log(import.meta.env.MODE);
+    // console.log(import.meta.env.BASE_URL);
+    // console.log(import.meta.env.PROD);
+    // console.log(import.meta.env.DEV);
+    // console.log(import.meta.env.SSR);
+
     fetch_movies(debouncedTermSearch);
   }, [debouncedTermSearch]);
 
@@ -98,3 +113,5 @@ const App = () => {
 };
 
 export default App;
+
+// PER UTILIZZARE APPWRITE: registrarsi, creare un nuovo progetto, l'appkey è vicino al nome del nuovo progetto in overview. Add a platform web, mettere nome ed * per l'hostname (per poter accedere da ovunque). Installare l'SDK di appwrite tramite npm (npm install appwrite). In databases creare un database, una volta creato ci sarà l'id del DB vicino al suo nome. Creare una collection nel DB. Creare gli attributes (searchTerm: string, count: integer, poster_url: url, movie_id: integer). Settare i permissions in settings: role any, CRUD.
