@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Search from './components/search';
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
@@ -23,47 +23,52 @@ const App = () => {
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-  const API_OPTIONS = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${API_KEY}`,
+  const API_OPTIONS = useCallback(() => {
+    return {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    };
+  }, [API_KEY]);
+
+  const fetch_movies = useCallback(
+    async (query = '') => {
+      setIsLoading(true);
+      setErrorMessage('');
+      try {
+        const endpoint = query
+          ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+          : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+
+        const response = await fetch(endpoint, API_OPTIONS());
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch movies');
+        }
+
+        const data = await response.json();
+
+        if (data.Response === false) {
+          setErrorMessage(data.Error || 'Failed to fetch movies');
+          setMovielist;
+        }
+
+        setMovielist(data.results || []);
+
+        if (query && data.results.length > 0) {
+          await updateSearchCount(query, data.results[0]);
+        }
+      } catch (error) {
+        console.error('Error fetching movies: ' + error);
+        setErrorMessage('Error fetching movies. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
     },
-  };
-
-  const fetch_movies = async (query = '') => {
-    setIsLoading(true);
-    setErrorMessage('');
-    try {
-      const endpoint = query
-        ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-        : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
-
-      const response = await fetch(endpoint, API_OPTIONS);
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch movies');
-      }
-
-      const data = await response.json();
-
-      if (data.Response === false) {
-        setErrorMessage(data.Error || 'Failed to fetch movies');
-        setMovielist;
-      }
-
-      setMovielist(data.results || []);
-
-      if (query && data.results.length > 0) {
-        await updateSearchCount(query, data.results[0]);
-      }
-    } catch (error) {
-      console.error('Error fetching movies: ' + error);
-      setErrorMessage('Error fetching movies. Please try again later.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    [API_BASE_URL, API_OPTIONS]
+  );
 
   const loadTrendingMovies = async () => {
     try {
@@ -80,7 +85,7 @@ const App = () => {
   // effect per caricare ed aggiornare il catalogo dei film
   useEffect(() => {
     fetch_movies(debouncedTermSearch);
-  }, [debouncedTermSearch]);
+  }, [debouncedTermSearch, fetch_movies]);
 
   // effect per ottenere i film second trend di ricerca
   useEffect(() => {

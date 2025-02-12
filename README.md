@@ -69,3 +69,7 @@
 [NPM react-use](https://www.npmjs.com/package/react-use)
 
 [appwrite databases doc](https://appwrite.io/docs/references/cloud/client-web/databases)
+
+[react eslint's warning](https://stackoverflow.com/a/60327893)
+
+[react useCallback](https://www.youtube.com/watch?v=_AyFP5s69N4&list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h&index=7&ab_channel=WebDevSimplified)
