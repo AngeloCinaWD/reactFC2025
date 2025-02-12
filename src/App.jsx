@@ -3,7 +3,7 @@ import Search from './components/search';
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
 import { useDebounce } from 'react-use';
-import { updateSearchCount } from './appwrite';
+import { getTrendingMovies, updateSearchCount } from './appwrite';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,6 +15,9 @@ const App = () => {
   const [movieList, setMovielist] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
+  // nuovo state array per i film più cercati
+  const [trendingMovies, setTrendingMovies] = useState([]);
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -51,9 +54,6 @@ const App = () => {
 
       setMovielist(data.results || []);
 
-      // chiamo la funzione esportata updateSearchCount, devo passare i 2 parametri altrimenti non la chiama
-      // passo il termine di ricerca e il primo film nella lista dei film trovati secondo ricerca
-      // se esiste una query e se esiste un film per quella query
       if (query && data.results.length > 0) {
         await updateSearchCount(query, data.results[0]);
       }
@@ -65,18 +65,27 @@ const App = () => {
     }
   };
 
+  const loadTrendingMovies = async () => {
+    try {
+      const movies = await getTrendingMovies();
+
+      setTrendingMovies(movies);
+    } catch (error) {
+      console.log(`Error fetching trendin movies: ${error}`);
+    }
+  };
+
   useDebounce(() => setDebouncedTermSearch(searchTerm), 1000, [searchTerm]);
 
+  // effect per caricare ed aggiornare il catalogo dei film
   useEffect(() => {
-    // Built-in constants ENV VARIABLES
-    // console.log(import.meta.env.MODE);
-    // console.log(import.meta.env.BASE_URL);
-    // console.log(import.meta.env.PROD);
-    // console.log(import.meta.env.DEV);
-    // console.log(import.meta.env.SSR);
-
     fetch_movies(debouncedTermSearch);
   }, [debouncedTermSearch]);
+
+  // effect per ottenere i film second trend di ricerca
+  useEffect(() => {
+    loadTrendingMovies();
+  }, []);
 
   return (
     <main>
@@ -92,6 +101,22 @@ const App = () => {
 
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
+
+        {/* se esistono film nel trendingMovie array */}
+        {trendingMovies.length > 0 && (
+          <section className="trending">
+            <h2>Trending Movies</h2>
+
+            <ul>
+              {trendingMovies.map((movie, index) => (
+                <li key={movie.$id}>
+                  <p>{index + 1}</p>
+                  <img src={movie.poster_url} alt={movie.title} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="all-movies">
           <h2 className="mt-[40px]">All Movies</h2>
@@ -113,5 +138,3 @@ const App = () => {
 };
 
 export default App;
-
-// PER UTILIZZARE APPWRITE: registrarsi, creare un nuovo progetto, l'appkey è vicino al nome del nuovo progetto in overview. Add a platform web, mettere nome ed * per l'hostname (per poter accedere da ovunque). Installare l'SDK di appwrite tramite npm (npm install appwrite). In databases creare un database, una volta creato ci sarà l'id del DB vicino al suo nome. Creare una collection nel DB. Creare gli attributes (searchTerm: string, count: integer, poster_url: url, movie_id: integer). Settare i permissions in settings: role any, CRUD.
