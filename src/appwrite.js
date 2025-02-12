@@ -33,7 +33,9 @@ export const updateSearchCount = async (searchTerm, movie) => {
         searchTerm,
         count: 1,
         movie_id: movie.id,
-        poster_url: import.meta.env.VITE_MOVIE_POSTER_URL + movie.poster_path,
+        poster_url: movie.poster_path
+          ? import.meta.env.VITE_MOVIE_POSTER_URL + movie.poster_path
+          : null,
         movie_title: movie.title,
       });
     }
