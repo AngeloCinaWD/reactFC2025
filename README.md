@@ -1,5 +1,7 @@
 # reactFC2025
 
+# creare file .env.local da .env.example
+
 [thksTo](https://www.youtube.com/watch?v=dCLhUialKPQ&ab_channel=JavaScriptMastery)
 
 [github code](https://github.com/adrianhajdin/react-movies/tree/main)
